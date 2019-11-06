@@ -1,0 +1,4 @@
+*.sql
+*.env
+*.pyc
+__pycache__
