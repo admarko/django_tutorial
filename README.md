@@ -12,3 +12,6 @@ the three-step guide to making model changes:
 
 To get into the shell, run:
 - `python manage.py shell`
+
+
+To format, from the virtual environment just run `black .`
