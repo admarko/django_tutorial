@@ -1,4 +1,4 @@
 *.sql
+db.sqlite3
 *.env
 *.pyc
-__pycache__
