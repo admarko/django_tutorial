@@ -12,3 +12,12 @@ the three-step guide to making model changes:
 
 To get into the shell, run:
 - `python manage.py shell`
+
+
+
+### TODO:
+
+- add mypy
+- add isort
+- deal with pycache stuff in in .gitignore
+- move sKey from settings -> .env
