@@ -1,28 +1,28 @@
 from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponse, HttpResponseRedirect, HttpRequest
 from django.urls import reverse
+from django.views import generic
 
 from .models import Choice, Question
 
 
-# the render() function takes the request object as its first argument, a
-# template name as its second argument and a dictionary as its optional third
-# argument. It returns an HttpResponse object of the given template rendered
-# with the given context.
-def index(request: HttpRequest) -> HttpResponse:
-    latest_question_list = Question.objects.order_by("-pub_date")[:5]
-    context = {"latest_question_list": latest_question_list}
-    return render(request, "polls/index.html", context)
+class IndexView(generic.ListView):
+    template_name = "polls/index.html"
+    context_object_name = "latest_question_list"
+
+    def get_queryset(self):
+        """Return the last five published questions."""
+        return Question.objects.order_by("-pub_date")[:5]
 
 
-def detail(request: HttpRequest, question_id: int) -> HttpResponse:
-    question = get_object_or_404(Question, pk=question_id)
-    return render(request, "polls/details.html", {"question": question})
+class DetailView(generic.DetailView):
+    model = Question
+    template_name = "polls/detail.html"
 
 
-def results(request: HttpRequest, question_id: int) -> HttpResponse:
-    question = get_object_or_404(Question, pk=question_id)
-    return render(request, "polls/results.html", {"question": question})
+class ResultsView(generic.DetailView):
+    model = Question
+    template_name = "polls/results.html"
 
 
 def vote(request: HttpRequest, question_id: int) -> HttpResponse:
