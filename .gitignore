@@ -5,3 +5,4 @@ __pycache__/
 *.pyc
 *mypy_cache/*
 polls/__pycache__/*
+*.cpython-36.pyc
